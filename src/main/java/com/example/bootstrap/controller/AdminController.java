@@ -1,7 +1,6 @@
 package com.example.bootstrap.controller;
 
 import com.example.bootstrap.entity.User;
-import com.example.bootstrap.repository.UserRepository;
 import com.example.bootstrap.service.RoleService;
 import com.example.bootstrap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 
@@ -18,7 +16,6 @@ import javax.validation.Valid;
 public class AdminController {
 
     private UserService userService;
-
 
     private RoleService roleService;
 
@@ -38,7 +35,6 @@ public class AdminController {
         return "index";
     }
 
-
     @GetMapping("/findOne")
     @ResponseBody
     public User findOne(Long id) {
@@ -50,7 +46,7 @@ public class AdminController {
         if(bindingResult.hasErrors())
             return "redirect:/admin";
         user.setRoles(roleService.findRolesByNames(roleNames));
-        userService.update(user);
+        userService.save(user);
         return "redirect:/admin";
     }
 
@@ -59,6 +55,5 @@ public class AdminController {
         userService.delete(id);
         return "redirect:/admin";
     }
-
 
 }

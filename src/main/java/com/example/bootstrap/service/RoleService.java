@@ -7,9 +7,8 @@ import java.util.List;
 
 public interface RoleService {
 
-    Role findRoleByName(String name);
 
     List<Role> findAllRoles();
 
-   HashSet<Role> findRolesByNames(String[] names);
+    HashSet<Role> findRolesByNames(String[] names);
 }

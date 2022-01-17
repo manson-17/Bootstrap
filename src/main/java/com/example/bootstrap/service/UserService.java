@@ -9,15 +9,9 @@ public interface UserService {
 
     public List<User> getAllUsers();
 
-    public User getUserById(Long id);
-
     public void save(User user);
 
-    public void update(User user);
-
     public void delete(Long id);
-
-    public User getUserByName(String name);
 
     public Optional<User> findUserByID(Long id);
 
