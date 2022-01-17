@@ -34,20 +34,20 @@ public class AdminController {
     @GetMapping()
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("allRoles", roleService.findAllRoles());
         return "index";
     }
 
 
     @GetMapping("/findOne")
     @ResponseBody
-    public User findOne(Long id, Model model) {
-        model.addAttribute("roles", roleService.findAllRoles());
+    public User findOne(Long id) {
         return userService.findUserByID(id).get();
     }
 
     @PostMapping("/save")
     public String save(@Valid User user, BindingResult bindingResult, @RequestParam(value = "roleNames") String[] roleNames) {
-        if (bindingResult.hasErrors())
+        if(bindingResult.hasErrors())
             return "redirect:/admin";
         user.setRoles(roleService.findRolesByNames(roleNames));
         userService.update(user);

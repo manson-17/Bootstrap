@@ -35,6 +35,7 @@ $(document).ready(function () {
             $('.myDelete #lastnameD').val(user.lastname)
             $('.myDelete #ageD').val(user.age)
             $('.myDelete #emailD').val(user.email)
+            $('.myDelete #rolesD').val(user.roles)
         })
             $('.myDelete #myModal').modal();
 
