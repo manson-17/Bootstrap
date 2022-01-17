@@ -10,11 +10,5 @@ import java.util.stream.Collectors;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
-    Role findRoleByName(String name);
-
-    default HashSet<Role> getRolesByNames(String[] names) {
-        Set<Role> roleSet = Arrays.stream(names).map(s -> findRoleByName(s)).collect(Collectors.toSet());
-        return (HashSet<Role>) roleSet;
-    }
 
 }

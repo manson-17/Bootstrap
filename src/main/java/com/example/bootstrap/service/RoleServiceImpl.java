@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class RoleServiceImpl implements RoleService {
@@ -21,6 +22,14 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public HashSet<Role> findRolesByNames(String[] names) {
-        return repository.getRolesByNames(names);
+        Set<Role> roleSet = new HashSet<>();
+        for (String name : names)
+            if (name.equals("ROLE_ADMIN")){
+                roleSet.add(findAllRoles().get(0));
+            }
+            else if (name.equals("ROLE_USER")){
+                roleSet.add(findAllRoles().get(1));
+            }
+        return (HashSet<Role>) roleSet;
     }
 }

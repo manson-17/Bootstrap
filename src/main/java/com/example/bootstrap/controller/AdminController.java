@@ -42,9 +42,7 @@ public class AdminController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid User user, BindingResult bindingResult, @RequestParam(value = "roleNames") String[] roleNames) {
-        if(bindingResult.hasErrors())
-            return "redirect:/admin";
+    public String save(@Valid User user, @RequestParam(value = "roleNames") String[] roleNames) {
         user.setRoles(roleService.findRolesByNames(roleNames));
         userService.save(user);
         return "redirect:/admin";
