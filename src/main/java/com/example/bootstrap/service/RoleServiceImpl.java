@@ -24,8 +24,8 @@ public class RoleServiceImpl implements RoleService {
     public HashSet<Role> findRolesByNames(String[] names) {
         Set<Role> roleSet = new HashSet<>();
         List<Role> allRoles = findAllRoles();
-        for(Role role: allRoles) {
-            for (String name : names) {
+        for (String name : names) {
+            for (Role role : allRoles) {
                 if (name.equals(role.getName())) {
                     roleSet.add(role);
                 }
