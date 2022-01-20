@@ -23,13 +23,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public HashSet<Role> findRolesByNames(String[] names) {
         Set<Role> roleSet = new HashSet<>();
-        for (String name : names)
-            if (name.equals("ROLE_ADMIN")){
-                roleSet.add(findAllRoles().get(0));
+        List<Role> allRoles = findAllRoles();
+        for(Role role: allRoles) {
+            for (String name : names) {
+                if (name.equals(role.getName())) {
+                    roleSet.add(role);
+                }
             }
-            else if (name.equals("ROLE_USER")){
-                roleSet.add(findAllRoles().get(1));
-            }
+        }
         return (HashSet<Role>) roleSet;
     }
 }
